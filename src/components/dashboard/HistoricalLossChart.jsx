@@ -2,7 +2,30 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, CartesianGrid } from 'recharts';
 import { historicalSolarData } from '../../data/historicalSolarData';
-import { formatUSD } from '../../utils/formatters';
+
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-[#111B2B] border border-[#25344A] p-3 rounded-lg shadow-xl">
+        <p className="font-bold text-[#F0F4FA] mb-2">{label}</p>
+        {payload.map((entry, index) => {
+          let displayText = '';
+          if (entry.dataKey === 'physicalClaims') {
+            displayText = 'Physical Loss Compensated.';
+          } else if (entry.dataKey === 'uncompensatedDowntimeLoss') {
+            displayText = 'Non-Physical Loss Uncompensated.';
+          }
+          return (
+            <p key={index} style={{ color: entry.color }} className="text-sm">
+              {displayText}
+            </p>
+          );
+        })}
+      </div>
+    );
+  }
+  return null;
+};
 
 export default function HistoricalLossChart() {
   return (
@@ -20,7 +43,7 @@ export default function HistoricalLossChart() {
           </p>
         </div>
         <div className="text-xs font-mono text-secondaryText mt-4 md:mt-0 whitespace-nowrap">
-          Values in $ Millions (USD)
+          Values in ₹ Millions (INR)
         </div>
       </div>
 
@@ -35,15 +58,10 @@ export default function HistoricalLossChart() {
             <YAxis 
               stroke="#9AAAC0" 
               tick={{ fill: '#9AAAC0', fontSize: 12 }}
-              tickFormatter={(val) => `$${val}M`}
+              tickFormatter={(val) => `₹${val}`}
               domain={[0, 1500]}
             />
-            <Tooltip 
-              cursor={{ fill: '#162236' }}
-              contentStyle={{ backgroundColor: '#111B2B', borderColor: '#25344A', color: '#F0F4FA', borderRadius: '8px' }}
-              itemStyle={{ fontSize: '14px' }}
-              formatter={(val) => [formatUSD(val), '']}
-            />
+            <Tooltip content={<CustomTooltip />} cursor={{ fill: '#162236' }} />
             <Legend wrapperStyle={{ paddingTop: '20px' }} />
             <Bar dataKey="physicalClaims" name="Physical Property Claims" fill="#818CF8" radius={[4, 4, 0, 0]} />
             <Bar dataKey="uncompensatedDowntimeLoss" name="Uncompensated Downtime Loss" fill="#38BDF8" radius={[4, 4, 0, 0]} />

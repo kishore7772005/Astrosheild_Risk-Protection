@@ -4,7 +4,7 @@ import { ShieldCheck, Database, Activity, Timer, Ship } from 'lucide-react';
 import AnimatedCounter from '../common/AnimatedCounter';
 
 const cards = [
-  { label: 'ASSET CLASS', value: 'Maritime Cargo', prefix: '', suffix: '', text: 'Autonomous Fleet Ops', icon: Ship, isString: true },
+  { label: 'TARGET', value: 'Maritime Cargo', prefix: '', suffix: '', text: 'Autonomous Fleet Ops', icon: Ship, isString: true },
   { label: 'INDEX TRIGGER', value: '-100', prefix: 'Dst ≤ ', suffix: ' nT', text: 'Geomagnetic Index', icon: Activity, isString: true },
   { label: 'ASTROSHIELD PREMIUM', value: '17500', prefix: '₹', suffix: '', text: 'Add-on cover cost', icon: ShieldCheck },
   { label: 'ASTROSHIELD RESERVE', value: '5250', prefix: '₹', suffix: '', text: 'Additional tail reserve', icon: Database },

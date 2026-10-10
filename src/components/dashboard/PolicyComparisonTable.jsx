@@ -33,6 +33,7 @@ export default function PolicyComparisonTable() {
               <th className="p-4 font-semibold text-right text-cyanAccent">Modified Premium (₹)</th>
               <th className="p-4 font-semibold text-right text-cyanAccent">Modified Reserve (₹)</th>
               <th className="p-4 font-semibold text-right text-blueAccent">AstroShield Add-on (₹)</th>
+              <th className="p-4 font-semibold text-right text-emerald-400">Loading Factor</th>
             </tr>
           </thead>
           <motion.tbody
@@ -54,6 +55,7 @@ export default function PolicyComparisonTable() {
                 <td className="p-4 font-mono text-right text-mainText">{formatCurrency(row.modifiedPremium)}</td>
                 <td className="p-4 font-mono text-right text-mainText">{formatCurrency(row.modifiedReserve)}</td>
                 <td className="p-4 font-mono text-right text-blueAccent">+{formatCurrency(row.addon)}</td>
+                <td className="p-4 font-mono text-right text-emerald-400">0.2%</td>
               </motion.tr>
             ))}
             <tr className="bg-elevatedPanel border-t-2 border-borderAccent font-bold">
@@ -64,6 +66,7 @@ export default function PolicyComparisonTable() {
               <td className="p-4 font-mono text-right text-cyanAccent">{formatCurrency(totalModifiedPremium)}</td>
               <td className="p-4 font-mono text-right text-cyanAccent">{formatCurrency(totalModifiedReserve)}</td>
               <td className="p-4 font-mono text-right text-blueAccent">{formatCurrency(totalAddon)}</td>
+              <td className="p-4 font-mono text-right text-secondaryText">—</td>
             </tr>
           </motion.tbody>
         </table>
@@ -72,13 +75,13 @@ export default function PolicyComparisonTable() {
       <div className="flex flex-col sm:flex-row gap-4">
         <button 
           onClick={() => setModalOpen('existing')}
-          className="flex-1 py-4 px-6 bg-panelBg border border-borderAccent rounded-lg text-mainText font-semibold hover:bg-elevatedPanel transition-colors text-center"
+          className="flex-1 py-4 px-6 bg-panelBg border border-borderAccent rounded-lg text-mainText font-semibold hover:bg-elevatedPanel transition-colors text-center animate-pulse"
         >
           EXISTING POLICY
         </button>
         <button 
           onClick={() => setModalOpen('modified')}
-          className="flex-1 py-4 px-6 bg-elevatedPanel border border-cyanAccent rounded-lg text-cyanAccent font-semibold shadow-[0_0_15px_rgba(82,213,232,0.1)] hover:shadow-[0_0_20px_rgba(82,213,232,0.2)] transition-all text-center"
+          className="flex-1 py-4 px-6 bg-elevatedPanel border border-cyanAccent rounded-lg text-cyanAccent font-semibold shadow-[0_0_15px_rgba(82,213,232,0.1)] hover:shadow-[0_0_20px_rgba(82,213,232,0.2)] transition-all text-center animate-pulse"
         >
           EXISTING POLICY + ASTROSHIELD ADD-ON
         </button>

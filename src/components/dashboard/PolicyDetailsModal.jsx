@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from '../common/Modal';
 import { formatCurrency } from '../../utils/formatters';
+import solarVideo from '../../assets/images/gemini_generated_video_ac05b662.mp4';
 
 export default function PolicyDetailsModal({ type, onClose, totals }) {
   if (!type) return null;
@@ -10,8 +11,22 @@ export default function PolicyDetailsModal({ type, onClose, totals }) {
   
   const title = isModified ? 'Comprehensive Solar Storm & NDBI Protection' : 'Existing Policy';
 
+  const videoElement = isModified ? (
+    <div className="w-full h-full flex flex-col items-center justify-center p-4">
+      <video 
+        autoPlay 
+        loop 
+        muted 
+        playsInline 
+        src={solarVideo} 
+        className="w-[120%] max-w-xl h-auto rounded-xl shadow-[0_0_40px_rgba(56,189,248,0.2)]"
+        style={{ mixBlendMode: 'screen', filter: 'contrast(1.2)' }}
+      />
+    </div>
+  ) : null;
+
   return (
-    <Modal isOpen={!!type} onClose={onClose} title={title}>
+    <Modal isOpen={!!type} onClose={onClose} title={title} sideContent={videoElement}>
       <div className="mb-4">
         <div className="text-xs text-secondaryText uppercase tracking-widest mb-1">{isModified ? 'Enhanced Cover' : 'Policy category: Standard'}</div>
         <div className="flex flex-col gap-2 bg-panelBg p-4 rounded border border-borderAccent mt-4">
@@ -27,7 +42,7 @@ export default function PolicyDetailsModal({ type, onClose, totals }) {
       </div>
 
       <h4 className="text-mainText font-semibold mb-2">{isModified ? 'Additional Cover Benefits' : 'Coverage Scope'}</h4>
-      <ul className="list-disc pl-5 mb-4 text-secondaryText space-y-2">
+      <ul className="list-disc pl-5 mb-4 text-secondaryText space-y-2 text-sm">
         {isModified ? (
           <>
             <li>Parametric protection for qualifying non-physical operational losses.</li>
@@ -44,7 +59,7 @@ export default function PolicyDetailsModal({ type, onClose, totals }) {
         )}
       </ul>
 
-      <div className="bg-amberWarning/10 border border-amberWarning/30 p-3 rounded text-sm text-amberWarning/90 mb-4">
+      <div className="bg-amberWarning/10 border border-amberWarning/30 p-3 rounded text-xs text-amberWarning/90 mb-4">
         {isModified 
           ? "Payout eligibility depends on the actual contract wording, source-data validity, event conditions, and configured verification rules. The under-15-minute figure is a design objective for the prototype, not a verified production service-level guarantee." 
           : "Conventional indemnity coverage depends on the specific policy wording, exclusions, and qualifying loss conditions. This case-study baseline assumes that pure space-weather-related operational downtime is not covered."}
