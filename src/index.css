@@ -33,3 +33,40 @@
   50% { transform: scaleY(1.4); opacity: 1; }
   100% { transform: scaleY(1); opacity: 0.8; }
 }
+
+@keyframes attentionBlinkCyan {
+  0%, 100% {
+    border-color: rgba(82, 213, 232, 0.25);
+    box-shadow: 0 0 0px rgba(82, 213, 232, 0);
+    opacity: 0.85;
+  }
+  50% {
+    border-color: rgba(82, 213, 232, 1);
+    box-shadow: 0 0 25px rgba(82, 213, 232, 0.65), inset 0 0 12px rgba(82, 213, 232, 0.25);
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes attentionBlinkAmber {
+  0%, 100% {
+    border-color: rgba(245, 158, 11, 0.25);
+    box-shadow: 0 0 0px rgba(245, 158, 11, 0);
+    opacity: 0.85;
+  }
+  50% {
+    border-color: rgba(245, 158, 11, 1);
+    box-shadow: 0 0 25px rgba(245, 158, 11, 0.65), inset 0 0 12px rgba(245, 158, 11, 0.25);
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+
+.blink-box-cyan {
+  animation: attentionBlinkCyan 1.6s infinite ease-in-out;
+}
+
+.blink-box-amber {
+  animation: attentionBlinkAmber 1.6s infinite ease-in-out;
+}
+
